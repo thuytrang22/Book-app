@@ -1,0 +1,659 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API of Book",
+        "description": "L5 Swagger OpenApi description",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://book/api",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/book": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get list of Books",
+                "description": "Returns list of Books",
+                "operationId": "index",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Update existing book",
+                "description": "Returns updated book data",
+                "operationId": "updateBook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Book id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateBookRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorContentResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Store new Book",
+                "description": "Returns book data",
+                "operationId": "fe830465b6956f12d151ef6573d1a6e0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreBookRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorContentResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/book/{id}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get book information",
+                "description": "Returns list of Books",
+                "operationId": "e34f16671282c12bd1d0ab5fb1ecd454",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Book id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Delete existing book",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteBook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Book id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeleteResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthResource"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ForbiddenResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "StoreBookRequest": {
+                "title": "Store Book request",
+                "description": "Store Book request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new book",
+                        "type": "string",
+                        "example": "A nice book"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "Description of the new book",
+                        "type": "string",
+                        "example": "This is new book's description"
+                    },
+                    "author_id": {
+                        "title": "author_id",
+                        "description": "Author's id of the new book",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateBookRequest": {
+                "title": "Store Book request",
+                "description": "Store Book request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new book",
+                        "type": "string",
+                        "example": "A nice book"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "Description of the new book",
+                        "type": "string",
+                        "example": "This is new book's description"
+                    },
+                    "author_id": {
+                        "title": "author_id",
+                        "description": "Author's id of the new book",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "BadResource": {
+                "title": "BookResource",
+                "description": "Book resource",
+                "properties": {
+                    "data": {
+                        "title": "error",
+                        "description": "error",
+                        "example": null
+                    },
+                    "code": {
+                        "title": "null",
+                        "example": 400
+                    },
+                    "status": {
+                        "title": "401",
+                        "example": "false"
+                    },
+                    "message": {
+                        "title": "false",
+                        "example": "Bad qequest"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ErrorResource"
+                }
+            },
+            "BookResource": {
+                "title": "BookResource",
+                "description": "Book resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Book"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "BookResource"
+                }
+            },
+            "DeleteResource": {
+                "title": "BookResource",
+                "description": "Book resource",
+                "properties": {
+                    "data": {
+                        "title": "error",
+                        "description": "error",
+                        "example": null
+                    },
+                    "code": {
+                        "title": "null",
+                        "example": 204
+                    },
+                    "status": {
+                        "title": "204",
+                        "example": "true"
+                    },
+                    "message": {
+                        "title": "true",
+                        "example": "Delete resource Successfully"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ErrorResource"
+                }
+            },
+            "ErrorContentResource": {
+                "title": "BookResource",
+                "description": "Book resource",
+                "properties": {
+                    "data": {
+                        "title": "error",
+                        "description": "error",
+                        "example": null
+                    },
+                    "code": {
+                        "title": "null",
+                        "example": 422
+                    },
+                    "status": {
+                        "title": "401",
+                        "example": "false"
+                    },
+                    "message": {
+                        "title": "false",
+                        "example": "The title field is required."
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ErrorResource"
+                }
+            },
+            "ForbiddenResource": {
+                "title": "BookResource",
+                "description": "Book resource",
+                "properties": {
+                    "data": {
+                        "title": "error",
+                        "description": "error",
+                        "example": null
+                    },
+                    "code": {
+                        "title": "null",
+                        "example": 403
+                    },
+                    "status": {
+                        "title": "401",
+                        "example": "false"
+                    },
+                    "message": {
+                        "title": "false",
+                        "example": "Forbidden"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ErrorResource"
+                }
+            },
+            "NotFoundResource": {
+                "title": "BookResource",
+                "description": "Book resource",
+                "properties": {
+                    "data": {
+                        "title": "error",
+                        "description": "error",
+                        "example": null
+                    },
+                    "code": {
+                        "title": "null",
+                        "example": 404
+                    },
+                    "status": {
+                        "title": "401",
+                        "example": "true"
+                    },
+                    "message": {
+                        "title": "false",
+                        "example": "Resource not found"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ErrorResource"
+                }
+            },
+            "UnauthResource": {
+                "title": "BookResource",
+                "description": "Book resource",
+                "properties": {
+                    "data": {
+                        "title": "error",
+                        "description": "error",
+                        "example": null
+                    },
+                    "code": {
+                        "title": "null",
+                        "example": 401
+                    },
+                    "status": {
+                        "title": "401",
+                        "example": "false"
+                    },
+                    "message": {
+                        "title": "false",
+                        "example": "Unauthorized"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ErrorResource"
+                }
+            },
+            "Book": {
+                "title": "Book",
+                "description": "Book model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the new book",
+                        "type": "string",
+                        "example": "A nice book"
+                    },
+                    "tac_gia": {
+                        "title": "Tac_Gia",
+                        "description": "Name of the new book",
+                        "type": "string",
+                        "example": "A nice book"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "description": "Description of the new book",
+                        "type": "string",
+                        "example": "This is new book's description"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "author_id": {
+                        "title": "Author ID",
+                        "description": "Author's id of the new book",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "author": {
+                        "title": "Author",
+                        "description": "Book author's user model"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Book"
+                }
+            }
+        }
+    }
+}
